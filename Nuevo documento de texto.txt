@@ -1,0 +1,33 @@
+PATH
+=====
+const path = require('path');
+path.join('algo','algo');
+path.dirname('ruta');
+path.extname('ruta');
+=============================================
+BCRYPT
+======
+$ npm install bcrypt --save
+const bcrypt = require('bcrypt');
+let passEcritpada = bcrypt.hashSync('pass',10);
+let check = bcrypt.compareSync('pass',passEcritpada);
+=============================================
+UPLOAD FILE
+===========
+<form enctype="multipart/form-data">
+$ npm install multer --save
+const multer = require('multer');
+var storage = multer.diskStorage({
+	destination:(req,file,cb)=>{
+		cb(null,'public/img/avatars');
+	},
+	filename:(req,file,cb)=>{
+		cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+	}
+});
+var upload = multer({storage:storage});
+app.post('/ruta', upload.any() , (req,res,next)=>{} );
+let user = {
+	avatar: req.files[0].filename
+}
+=============================================
